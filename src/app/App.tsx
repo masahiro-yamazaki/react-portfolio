@@ -2,23 +2,15 @@ import { useVariants } from "../utils/variants";
 import { copySets } from "../data/copy";
 import { aboutTexts } from "../data/about";
 import { projects } from "../data/projects";
-import type { AboutVariant } from "../data/about";
 import type { ProjectVariant } from "../utils/variants";
 
 import { Container } from "../components/layout/Container";
 import { Segmented } from "../components/ui/Segmented";
 import { Hero } from "../sections/Hero";
-import { About } from "../sections/About";
 import { Stack } from "../sections/Stack";
 import { ProjectSummary } from "../sections/ProjectSummary";
 
 import styles from "./App.module.css";
-
-const aboutOptions: { value: AboutVariant; label: string }[] = [
-  { value: "aboutA", label: "短文+チップ" },
-  { value: "aboutB", label: "2カラム" },
-  { value: "aboutC", label: "箇条書き" },
-];
 
 const projectOptions: { value: ProjectVariant; label: string }[] = projects.map(
   (p) => ({ value: p.id as ProjectVariant, label: p.title }),
@@ -69,25 +61,18 @@ export function App() {
         </Container>
       </div>
 
-      {/* 1) Hero */}
-      <Hero copyIndex={variants.copyIndex} />
+      {/* 1) Hero + About */}
+      <Hero
+        copyIndex={variants.copyIndex}
+        aboutVariant={variants.about}
+        aboutTextIndex={variants.aboutTextIndex}
+        onAboutVariantChange={(v) => setVariant("about", v)}
+      />
 
-      {/* 2) About */}
-      <div className={styles.sectionWithControl}>
-        <Container>
-          <Segmented
-            options={aboutOptions}
-            value={variants.about}
-            onChange={(v) => setVariant("about", v)}
-          />
-        </Container>
-      </div>
-      <About variant={variants.about} textIndex={variants.aboutTextIndex} />
-
-      {/* 3) Stack */}
+      {/* 2) Stack */}
       <Stack />
 
-      {/* 4) Project Summary */}
+      {/* 3) Project Summary */}
       <div className={styles.sectionWithControl}>
         <Container>
           <Segmented
