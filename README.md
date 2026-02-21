@@ -16,43 +16,45 @@ npm run dev
 ```
 src/
 ├── app/            … App.tsx（全体構成）
-├── sections/       … Hero / About / Stack / ProjectSummary
 ├── components/
-│   ├── layout/     … Container
-│   └── ui/         … Chip, Card, SectionTitle, Segmented
+│   ├── IntroSection.tsx … Hero + About 統合セクション（Tailwind）
+│   ├── layout/          … Container
+│   └── ui/              … Chip, Card, SectionTitle, Segmented
+├── sections/       … Stack / ProjectSummary（CSS Modules）
 ├── data/           … 差し替え用データ
-│   ├── copy.ts     … キャッチコピー（11 候補）
-│   ├── about.ts    … 自己紹介文（6 パターン）＋チップ・箇条書きデータ
+│   ├── profile.ts  … 名前・キャッチコピー(8個)・強み・自己紹介文・締め
 │   ├── stack.ts    … 技術スタック（visible で表示/非表示）
 │   └── projects.ts … 案件概要（3 案件分）
-├── utils/
-│   └── variants.ts … バリアント切替フック
 └── styles/
     ├── theme.css   … カラー・フォント・余白の変数
     └── globals.css … リセット＋ベーススタイル
 ```
 
-## データ差し替え
-
-面談先に合わせて差し替えるには `src/data/` 配下を編集する。
+## 文言の差し替え場所
 
 | ファイル | 内容 | 変更ポイント |
 |---|---|---|
-| `copy.ts` | Hero のキャッチコピー | `copySets` 配列にオブジェクトを追加/編集 |
-| `about.ts` | 自己紹介文 | `aboutTexts` 配列を編集。チップは `aboutChips` |
-| `stack.ts` | 技術スタック | `visible: false` で非表示にできる |
-| `projects.ts` | 案件概要 | 1 案件 = 1 オブジェクト。追加は配列に push |
+| `data/profile.ts` | IntroSection の全データ | 下記参照 |
+| `data/stack.ts` | 技術スタック | `visible: false` で非表示にできる |
+| `data/projects.ts` | 案件概要 | 1 案件 = 1 オブジェクト。追加は配列に push |
 
-## バリアント切替
+### `data/profile.ts` の中身
 
-画面上部のコントロールバーとセクション上の Segmented タブで、
-表示内容をリアルタイムに切り替えられる。
+| プロパティ | 説明 |
+|---|---|
+| `name` | 名前 |
+| `title` | 肩書き |
+| `catchCopies` | キャッチコピー候補の配列（8 個） |
+| `strengths` | 左カラムの強み 3 つ |
+| `summaryParagraphs` | 右カラムの自己紹介文（段落ごとの配列） |
+| `closingLine` | 締めの一文 |
 
-- **Catch** — Hero キャッチコピーの選択
-- **About文** — 自己紹介文のトーン選択
-- **About レイアウト** — aboutA（短文＋チップ）/ aboutB（2 カラム）/ aboutC（箇条書き）
-- **Project** — 表示する案件の切替
+## キャッチコピー切替方法
+
+IntroSection の下部にセレクトボックスがあり、
+`profile.ts` の `catchCopies` 配列からリアルタイムに切り替えられる。
+配列にパターンを追加すればセレクトの選択肢も自動で増える。
 
 ## 技術スタック
 
-React 19 + TypeScript + Vite + CSS Modules
+React 19 + TypeScript + Vite + Tailwind CSS v4 + CSS Modules

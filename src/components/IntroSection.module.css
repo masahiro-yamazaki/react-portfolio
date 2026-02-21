@@ -1,0 +1,135 @@
+.section {
+  padding: 6rem 2rem;
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+}
+
+/* ===== 左カラム ===== */
+.catch {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.name {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+}
+
+.title {
+  font-size: 20px;
+  color: var(--color-text-sub);
+  margin-bottom: 2.5rem;
+}
+
+.strengths {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.strengthItem {
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+}
+
+.strengthNum {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.8;
+  color: var(--color-accent);
+}
+
+.strengthText {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* ===== 右カラム ===== */
+.summaryTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.paragraph {
+  font-size: 20px;
+  line-height: 1.8;
+  color: var(--color-text-sub);
+}
+
+.closing {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* ===== キャッチ切替 ===== */
+.switcher {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.switcherLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-sub);
+}
+
+.switcherSelect {
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
+}
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .catch {
+    font-size: 2.25rem;
+  }
+
+  .name {
+    font-size: 1.75rem;
+  }
+}
