@@ -21,20 +21,4 @@ export const profile = {
         "コードレビュー文化の醸成やドキュメント整備による DX 向上",
     },
   ],
-  contributions: [
-    {
-      title: "OSS コントリビューション",
-      description:
-        "React 関連ライブラリへのバグ修正 PR・ドキュメント改善",
-    },
-    {
-      title: "社内勉強会",
-      description:
-        "フロントエンド技術の社内共有・モブプログラミングの推進",
-    },
-    {
-      title: "技術記事",
-      description: "実務で得た知見を Qiita・Zenn で発信",
-    },
-  ],
 } as const;

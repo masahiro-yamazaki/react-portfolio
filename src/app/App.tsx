@@ -78,18 +78,6 @@ export function App() {
         </div>
       </Section>
 
-      {/* Contrib */}
-      <Section id="contrib" title="Contributions">
-        <div className={styles.contribGrid}>
-          {profile.contributions.map((c) => (
-            <div key={c.title} className={styles.contribCard}>
-              <h3 className={styles.contribTitle}>{c.title}</h3>
-              <p className={styles.contribDesc}>{c.description}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
       {/* Footer */}
       <footer className={styles.footer}>
         <Container>

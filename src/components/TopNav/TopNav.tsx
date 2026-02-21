@@ -6,7 +6,6 @@ const NAV_ITEMS = [
   { id: "stack", label: "Stack" },
   { id: "strength", label: "Strength" },
   { id: "cases", label: "Cases" },
-  { id: "contrib", label: "Contrib" },
 ] as const;
 
 export function TopNav() {

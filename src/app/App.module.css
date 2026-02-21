@@ -155,35 +155,6 @@
   gap: var(--space-md);
 }
 
-/* ===== Contrib ===== */
-
-.contribGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-lg);
-}
-
-.contribCard {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-}
-
-.contribTitle {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  margin-bottom: var(--space-xs);
-}
-
-.contribDesc {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  line-height: 1.7;
-}
-
 /* ===== Footer ===== */
 
 .footer {
