@@ -3,7 +3,6 @@ import { Container } from "../Container/Container.tsx";
 
 const NAV_ITEMS = [
   { id: "about", label: "About" },
-  { id: "stack", label: "Stack" },
   { id: "values", label: "Values" },
   { id: "cases", label: "Cases" },
 ] as const;

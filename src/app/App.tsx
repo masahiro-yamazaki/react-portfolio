@@ -4,7 +4,6 @@ import { Section } from "../components/Section/Section.tsx";
 import { CaseCard } from "../components/CaseCard/CaseCard.tsx";
 import { Container } from "../components/Container/Container.tsx";
 import { profile } from "../content/profile.ts";
-import { skills } from "../content/skills.ts";
 import { cases } from "../content/cases.ts";
 
 export function App() {
@@ -30,8 +29,8 @@ export function App() {
               <span key={kw} className={styles.heroKeyword}>{kw}</span>
             ))}
           </div>
-          <a href="#stack" className={styles.heroCta}>
-            Stack を見る ↓
+          <a href="#values" className={styles.heroCta}>
+            Values を見る ↓
           </a>
         </Container>
       </section>
@@ -39,36 +38,6 @@ export function App() {
       {/* About */}
       <Section id="about" title="About">
         <p className={styles.aboutText}>{profile.about}</p>
-      </Section>
-
-      {/* Stack */}
-      <Section id="stack" title="Stack">
-        <div className={styles.stackGrid}>
-          {skills.map((cat) => (
-            <div key={cat.category} className={styles.stackCategory}>
-              <h3 className={styles.stackCategoryTitle}>{cat.category}</h3>
-              <ul className={styles.stackList}>
-                {cat.items.map((skill) => (
-                  <li key={skill.name} className={styles.stackItem}>
-                    <span>{skill.name}</span>
-                    <span className={styles.stackLevel}>
-                      {Array.from({ length: 5 }, (_, i) => (
-                        <span
-                          key={i}
-                          className={
-                            i < skill.level
-                              ? styles.dotFilled
-                              : styles.dotEmpty
-                          }
-                        />
-                      ))}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
       </Section>
 
       {/* Values */}
