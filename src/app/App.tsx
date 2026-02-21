@@ -1,20 +1,13 @@
 import { useVariants } from "../utils/variants";
 import { copySets } from "../data/copy";
 import { aboutTexts } from "../data/about";
-import { projects } from "../data/projects";
-import type { ProjectVariant } from "../utils/variants";
 
 import { Container } from "../components/layout/Container";
-import { Segmented } from "../components/ui/Segmented";
 import { Hero } from "../sections/Hero";
 import { Stack } from "../sections/Stack";
 import { ProjectSummary } from "../sections/ProjectSummary";
 
 import styles from "./App.module.css";
-
-const projectOptions: { value: ProjectVariant; label: string }[] = projects.map(
-  (p) => ({ value: p.id as ProjectVariant, label: p.title }),
-);
 
 export function App() {
   const { variants, setVariant } = useVariants();
@@ -73,16 +66,7 @@ export function App() {
       <Stack />
 
       {/* 3) Project Summary */}
-      <div className={styles.sectionWithControl}>
-        <Container>
-          <Segmented
-            options={projectOptions}
-            value={variants.project}
-            onChange={(v) => setVariant("project", v)}
-          />
-        </Container>
-      </div>
-      <ProjectSummary variant={variants.project} />
+      <ProjectSummary />
 
       {/* Footer */}
       <footer className={styles.footer}>

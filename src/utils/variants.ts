@@ -1,18 +1,14 @@
 import { useState, useCallback } from "react";
 import type { AboutVariant } from "../data/about";
 
-export type ProjectVariant = "project1" | "project2" | "project3";
-
 export interface VariantState {
   about: AboutVariant;
-  project: ProjectVariant;
   copyIndex: number;
   aboutTextIndex: number;
 }
 
 const initialState: VariantState = {
   about: "aboutA",
-  project: "project1",
   copyIndex: 0,
   aboutTextIndex: 0,
 };
