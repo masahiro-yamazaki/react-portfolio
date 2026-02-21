@@ -1,0 +1,14 @@
+.section {
+  padding: var(--space-section) 0;
+}
+
+.title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  margin-bottom: var(--space-xl);
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--color-text), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
