@@ -1,82 +1,109 @@
+import { useVariants } from "../utils/variants";
+import { copySets } from "../data/copy";
+import { aboutTexts } from "../data/about";
+import { projects } from "../data/projects";
+import type { AboutVariant } from "../data/about";
+import type { ProjectVariant } from "../utils/variants";
+
+import { Container } from "../components/layout/Container";
+import { Segmented } from "../components/ui/Segmented";
+import { Hero } from "../sections/Hero";
+import { About } from "../sections/About";
+import { Stack } from "../sections/Stack";
+import { ProjectSummary } from "../sections/ProjectSummary";
+
 import styles from "./App.module.css";
-import { TopNav } from "../components/TopNav/TopNav.tsx";
-import { Section } from "../components/Section/Section.tsx";
-import { CaseCard } from "../components/CaseCard/CaseCard.tsx";
-import { Container } from "../components/Container/Container.tsx";
-import { profile } from "../content/profile.ts";
-import { cases } from "../content/cases.ts";
+
+const aboutOptions: { value: AboutVariant; label: string }[] = [
+  { value: "aboutA", label: "短文+チップ" },
+  { value: "aboutB", label: "2カラム" },
+  { value: "aboutC", label: "箇条書き" },
+];
+
+const projectOptions: { value: ProjectVariant; label: string }[] = projects.map(
+  (p) => ({ value: p.id as ProjectVariant, label: p.title }),
+);
 
 export function App() {
-  const techStrengths = profile.strengths.filter((s) => s.kind === "tech");
-  const mindStrengths = profile.strengths.filter((s) => s.kind === "mind");
+  const { variants, setVariant } = useVariants();
 
   return (
     <div className={styles.app}>
-      <TopNav />
-
-      {/* Hero */}
-      <section id="top" className={styles.hero}>
+      {/* Variant コントロールパネル */}
+      <div className={styles.controlBar}>
         <Container>
-          <h1 className={styles.heroName}>{profile.name}</h1>
-          <p className={styles.heroTitle}>
-            {profile.title}
-            <span className={styles.heroSep}> – </span>
-            {profile.subtitle}
-          </p>
-          <p className={styles.heroTagline}>{profile.tagline}</p>
-          <div className={styles.heroKeywords}>
-            {profile.keywords.map((kw) => (
-              <span key={kw} className={styles.heroKeyword}>{kw}</span>
-            ))}
+          <div className={styles.controls}>
+            <div className={styles.controlGroup}>
+              <span className={styles.controlLabel}>Catch</span>
+              <select
+                className={styles.select}
+                value={variants.copyIndex}
+                onChange={(e) =>
+                  setVariant("copyIndex", Number(e.target.value))
+                }
+              >
+                {copySets.map((c, i) => (
+                  <option key={c.id} value={i}>
+                    {c.id}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.controlGroup}>
+              <span className={styles.controlLabel}>About文</span>
+              <select
+                className={styles.select}
+                value={variants.aboutTextIndex}
+                onChange={(e) =>
+                  setVariant("aboutTextIndex", Number(e.target.value))
+                }
+              >
+                {aboutTexts.map((t, i) => (
+                  <option key={t.id} value={i}>
+                    {t.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <a href="#values" className={styles.heroCta}>
-            Values を見る ↓
-          </a>
         </Container>
-      </section>
+      </div>
 
-      {/* About */}
-      <Section id="about" title="About">
-        <p className={styles.aboutText}>{profile.about}</p>
-      </Section>
+      {/* 1) Hero */}
+      <Hero copyIndex={variants.copyIndex} />
 
-      {/* Values */}
-      <Section id="values" title="Values">
-        <h3 className={styles.strengthGroupTitle}>技術面</h3>
-        <div className={styles.strengthGrid}>
-          {techStrengths.map((s) => (
-            <div key={s.title} className={styles.strengthCard}>
-              <h3 className={styles.strengthTitle}>{s.title}</h3>
-              <p className={styles.strengthDesc}>{s.description}</p>
-            </div>
-          ))}
-        </div>
+      {/* 2) About */}
+      <div className={styles.sectionWithControl}>
+        <Container>
+          <Segmented
+            options={aboutOptions}
+            value={variants.about}
+            onChange={(v) => setVariant("about", v)}
+          />
+        </Container>
+      </div>
+      <About variant={variants.about} textIndex={variants.aboutTextIndex} />
 
-        <h3 className={styles.strengthGroupTitle}>思考面</h3>
-        <div className={styles.strengthGrid}>
-          {mindStrengths.map((s) => (
-            <div key={s.title} className={styles.strengthCard}>
-              <h3 className={styles.strengthTitle}>{s.title}</h3>
-              <p className={styles.strengthDesc}>{s.description}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
+      {/* 3) Stack */}
+      <Stack />
 
-      {/* Cases */}
-      <Section id="cases" title="Cases">
-        <div className={styles.casesGrid}>
-          {cases.map((c) => (
-            <CaseCard key={c.title} data={c} />
-          ))}
-        </div>
-      </Section>
+      {/* 4) Project Summary */}
+      <div className={styles.sectionWithControl}>
+        <Container>
+          <Segmented
+            options={projectOptions}
+            value={variants.project}
+            onChange={(v) => setVariant("project", v)}
+          />
+        </Container>
+      </div>
+      <ProjectSummary variant={variants.project} />
 
       {/* Footer */}
       <footer className={styles.footer}>
         <Container>
           <p className={styles.footerText}>
-            &copy; {new Date().getFullYear()} {profile.name}
+            &copy; {new Date().getFullYear()} Masahiro Yamazaki
           </p>
         </Container>
       </footer>

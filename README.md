@@ -1,73 +1,58 @@
-# React + TypeScript + Vite
+# Portfolio Mini LP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React 案件の面談用に画面共有で見せる、縦スクロール 1 枚ミニ LP。
 
-Currently, two official plugins are available:
+## 起動方法
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+ブラウザで `http://localhost:5173` を開く。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 構成
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── app/            … App.tsx（全体構成）
+├── sections/       … Hero / About / Stack / ProjectSummary
+├── components/
+│   ├── layout/     … Container
+│   └── ui/         … Chip, Card, SectionTitle, Segmented
+├── data/           … 差し替え用データ
+│   ├── copy.ts     … キャッチコピー（11 候補）
+│   ├── about.ts    … 自己紹介文（6 パターン）＋チップ・箇条書きデータ
+│   ├── stack.ts    … 技術スタック（visible で表示/非表示）
+│   └── projects.ts … 案件概要（3 案件分）
+├── utils/
+│   └── variants.ts … バリアント切替フック
+└── styles/
+    ├── theme.css   … カラー・フォント・余白の変数
+    └── globals.css … リセット＋ベーススタイル
+```
+
+## データ差し替え
+
+面談先に合わせて差し替えるには `src/data/` 配下を編集する。
+
+| ファイル | 内容 | 変更ポイント |
+|---|---|---|
+| `copy.ts` | Hero のキャッチコピー | `copySets` 配列にオブジェクトを追加/編集 |
+| `about.ts` | 自己紹介文 | `aboutTexts` 配列を編集。チップは `aboutChips` |
+| `stack.ts` | 技術スタック | `visible: false` で非表示にできる |
+| `projects.ts` | 案件概要 | 1 案件 = 1 オブジェクト。追加は配列に push |
+
+## バリアント切替
+
+画面上部のコントロールバーとセクション上の Segmented タブで、
+表示内容をリアルタイムに切り替えられる。
+
+- **Catch** — Hero キャッチコピーの選択
+- **About文** — 自己紹介文のトーン選択
+- **About レイアウト** — aboutA（短文＋チップ）/ aboutB（2 カラム）/ aboutC（箇条書き）
+- **Project** — 表示する案件の切替
+
+## 技術スタック
+
+React 19 + TypeScript + Vite + CSS Modules

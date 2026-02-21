@@ -1,0 +1,95 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* -- 左カラム -- */
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.subtitle {
+  font-size: var(--text-body);
+  color: var(--color-text-sub);
+  font-weight: 500;
+}
+
+.sep {
+  color: var(--color-border);
+}
+
+.name {
+  font-size: var(--text-h1);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.catch {
+  font-size: var(--text-lg);
+  color: var(--color-text-sub);
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+
+/* -- 右カラム -- */
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.strengthLabel {
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.strengthDesc {
+  font-size: var(--text-sm);
+  color: var(--color-text-sub);
+  line-height: 1.5;
+}
+
+/* -- スクロール誘導 -- */
+.scroll {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.scrollArrow {
+  display: inline-block;
+  font-size: 1.5rem;
+  color: var(--color-text-sub);
+  opacity: 0.5;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* -- レスポンシブ -- */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .name {
+    font-size: 2.25rem;
+  }
+}

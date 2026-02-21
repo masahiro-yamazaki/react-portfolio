@@ -1,0 +1,14 @@
+import styles from "./Chip.module.css";
+
+interface ChipProps {
+  label: string;
+  accent?: boolean;
+}
+
+export function Chip({ label, accent }: ChipProps) {
+  return (
+    <span className={`${styles.chip} ${accent ? styles.accent : ""}`}>
+      {label}
+    </span>
+  );
+}
