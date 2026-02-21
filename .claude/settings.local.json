@@ -5,7 +5,9 @@
       "Bash(npm run build:*)",
       "Bash(git add:*)",
       "Bash(git rm:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(npx vite build 2>&1)",
+      "Bash(timeout 8 npx vite --port 5173 2>&1 || true)"
     ]
   }
 }
