@@ -1,24 +1,54 @@
+export interface Strength {
+  title: string;
+  description: string;
+  kind: "tech" | "mind";
+}
+
 export const profile = {
   name: "Masahiro Yamazaki",
-  title: "Frontend Engineer",
-  tagline: "ユーザー体験を考え抜くフロントエンドエンジニア",
+  title: "Web Engineer",
+  subtitle: "Ruby on Rails / React",
+  tagline:
+    "Web エンジニア歴 12年。「作る」より「改善し続ける」を大切にしています。",
+  keywords: ["Rails", "React", "設計改善"] as const,
   about:
-    "React / TypeScript を中心に、パフォーマンスとアクセシビリティを重視した Web アプリケーション開発を行っています。設計・実装・レビューの全工程で品質にこだわり、チームの生産性向上にも貢献してきました。",
+    "Ruby on Rails を軸に 10 年以上の Web 開発経験があり、直近では React / TypeScript を用いたフロントエンド開発に取り組んでいます。可読性・保守性・変更コストを常に意識し、長く運用できるコードを書くことを大切にしています。",
   strengths: [
     {
-      title: "UI 設計力",
+      title: "コンポーネント設計",
       description:
-        "デザイナーとの協働経験を活かし、使いやすさと一貫性のある UI を構築",
+        "共通化・責務分離・再利用性を意識した設計",
+      kind: "tech",
     },
     {
-      title: "パフォーマンス改善",
+      title: "可読性と保守性",
       description:
-        "Core Web Vitals の改善やバンドルサイズ最適化の実績",
+        "JSX 肥大化の整理、変更コストを抑える構造設計",
+      kind: "tech",
     },
     {
-      title: "チーム開発",
+      title: "UI 改善",
       description:
-        "コードレビュー文化の醸成やドキュメント整備による DX 向上",
+        "プロダクト視点で既存 UI の構造・体験を継続的に改善",
+      kind: "tech",
     },
-  ],
+    {
+      title: "自走力",
+      description:
+        "一人称で設計〜実装〜レビューを回せる",
+      kind: "mind",
+    },
+    {
+      title: "設計で貢献",
+      description:
+        "レビュー視点を持ち、チーム全体のコード品質を底上げ",
+      kind: "mind",
+    },
+    {
+      title: "長期視点",
+      description:
+        "中長期の保守・運用を見据えた実装判断",
+      kind: "mind",
+    },
+  ] as const satisfies readonly Strength[],
 } as const;

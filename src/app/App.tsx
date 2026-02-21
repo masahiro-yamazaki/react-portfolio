@@ -8,6 +8,9 @@ import { skills } from "../content/skills.ts";
 import { cases } from "../content/cases.ts";
 
 export function App() {
+  const techStrengths = profile.strengths.filter((s) => s.kind === "tech");
+  const mindStrengths = profile.strengths.filter((s) => s.kind === "mind");
+
   return (
     <div className={styles.app}>
       <TopNav />
@@ -15,10 +18,21 @@ export function App() {
       {/* Hero */}
       <section id="top" className={styles.hero}>
         <Container>
-          <p className={styles.heroTag}>Portfolio</p>
           <h1 className={styles.heroName}>{profile.name}</h1>
-          <p className={styles.heroTitle}>{profile.title}</p>
+          <p className={styles.heroTitle}>
+            {profile.title}
+            <span className={styles.heroSep}> – </span>
+            {profile.subtitle}
+          </p>
           <p className={styles.heroTagline}>{profile.tagline}</p>
+          <div className={styles.heroKeywords}>
+            {profile.keywords.map((kw) => (
+              <span key={kw} className={styles.heroKeyword}>{kw}</span>
+            ))}
+          </div>
+          <a href="#stack" className={styles.heroCta}>
+            Stack を見る ↓
+          </a>
         </Container>
       </section>
 
@@ -57,10 +71,21 @@ export function App() {
         </div>
       </Section>
 
-      {/* Strength */}
-      <Section id="strength" title="Strength">
+      {/* Values */}
+      <Section id="values" title="Values">
+        <h3 className={styles.strengthGroupTitle}>技術面</h3>
         <div className={styles.strengthGrid}>
-          {profile.strengths.map((s) => (
+          {techStrengths.map((s) => (
+            <div key={s.title} className={styles.strengthCard}>
+              <h3 className={styles.strengthTitle}>{s.title}</h3>
+              <p className={styles.strengthDesc}>{s.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <h3 className={styles.strengthGroupTitle}>思考面</h3>
+        <div className={styles.strengthGrid}>
+          {mindStrengths.map((s) => (
             <div key={s.title} className={styles.strengthCard}>
               <h3 className={styles.strengthTitle}>{s.title}</h3>
               <p className={styles.strengthDesc}>{s.description}</p>

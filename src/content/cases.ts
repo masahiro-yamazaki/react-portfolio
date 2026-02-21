@@ -8,27 +8,27 @@ export interface Case {
 
 export const cases: Case[] = [
   {
-    title: "EC サイト リニューアル",
-    period: "2024.04 – 2024.12",
-    role: "フロントエンドリード",
+    title: "管理画面フロントエンド刷新",
+    period: "2023.10 – 2024.09",
+    role: "フロントエンド設計・実装",
     description:
-      "レガシーな jQuery ベースの EC サイトを React + TypeScript でフルリプレイス。Core Web Vitals を大幅に改善。",
-    techs: ["React", "TypeScript", "Next.js", "CSS Modules"],
+      "Rails の ERB で構築された管理画面を React + TypeScript へ段階的に移行。共通コンポーネントの設計と画面単位の移行計画を策定し、運用を止めずにリプレイスを推進。",
+    techs: ["React", "TypeScript", "Ruby on Rails", "CSS Modules"],
   },
   {
-    title: "社内管理ダッシュボード",
-    period: "2023.06 – 2024.03",
-    role: "フロントエンド開発",
+    title: "UI コンポーネント共通化",
+    period: "2023.04 – 2023.09",
+    role: "設計・実装",
     description:
-      "複雑なデータ可視化を含む管理画面を設計・実装。リアルタイムデータ更新とフィルタリング機能を実現。",
-    techs: ["React", "TypeScript", "Recharts", "React Query"],
+      "画面ごとに重複していた UI パーツを整理し、再利用可能なコンポーネントとして切り出し。JSX の肥大化を解消し、変更時の影響範囲を大幅に縮小。",
+    techs: ["React", "TypeScript", "Storybook"],
   },
   {
-    title: "モバイルアプリ向け WebView",
-    period: "2023.01 – 2023.05",
-    role: "フロントエンド開発",
+    title: "レガシー画面の段階的リファクタリング",
+    period: "2022.06 – 2023.03",
+    role: "バックエンド・フロントエンド",
     description:
-      "ネイティブアプリ内 WebView で動作する SPA を開発。ブリッジ通信の設計とパフォーマンス最適化を担当。",
-    techs: ["React", "TypeScript", "Vite", "Bridge API"],
+      "長期運用された Rails アプリの複雑化した画面ロジックを整理。Fat Controller の解消やビューの責務分離を行い、保守性とテスタビリティを向上。",
+    techs: ["Ruby on Rails", "Ruby", "RSpec", "Slim"],
   },
 ];
