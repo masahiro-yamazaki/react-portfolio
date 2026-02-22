@@ -18,7 +18,9 @@
       "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio add src/App.tsx src/App.css src/main.tsx)",
       "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio commit -m \"$\\(cat <<'EOF'\nfeat: 学習ログ入力→n8n Webhook POST の最小フロントを追加\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio push origin main)",
-      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio add .claude/settings.local.json src/components/IntroSection.tsx src/components/IntroSection.module.css && git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio commit -m \"$\\(cat <<'EOF'\nrefactor: IntroSectionのキャッチ切替UIを削除し固定表示に簡素化\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")"
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio add .claude/settings.local.json src/components/IntroSection.tsx src/components/IntroSection.module.css && git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio commit -m \"$\\(cat <<'EOF'\nrefactor: IntroSectionのキャッチ切替UIを削除し固定表示に簡素化\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio add n8n-test.json && git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio commit -m \"$\\(cat <<'EOF'\nchore: n8n Webhook→OpenAI Responses テスト用ワークフロー定義を追加\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio add .claude/settings.local.json && git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio commit -m \"$\\(cat <<'EOF'\nchore: .claude/settings.local.json の許可コマンドを更新\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }
