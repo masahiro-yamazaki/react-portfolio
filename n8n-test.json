@@ -1,0 +1,171 @@
+{
+  "name": "React -> n8n Webhook -> OpenAI Responses -> Reply",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "openai/run",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "WebhookTrigger",
+      "name": "Webhook (POST /openai/run)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        320,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "input_text",
+              "value": "={{$json.body?.text ?? $json.text ?? \"\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "SetInput",
+      "name": "Set Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        560,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{$env.OPENAI_API_KEY}}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-4.1-mini\",\n  \"input\": [\n    {\n      \"role\": \"user\",\n      \"content\": [\n        { \"type\": \"text\", \"text\": $json.input_text }\n      ]\n    }\n  ]\n}",
+        "options": {
+          "timeout": 120000,
+          "response": {
+            "responseFormat": "json"
+          }
+        }
+      },
+      "id": "CallOpenAI",
+      "name": "HTTP Request (OpenAI Responses)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        800,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "function extractTextFromResponsesApi(payload) {\n  // payload: OpenAI Responses API JSON\n  // We try to be resilient across minor shape differences.\n  // Expected: payload.output: [ { content: [ {type: 'output_text'|'text', text: '...'} ] } ]\n\n  if (!payload || typeof payload !== 'object') return '';\n\n  const out = payload.output;\n  if (!Array.isArray(out)) {\n    // Some SDKs have output_text, but API response usually doesn't.\n    if (typeof payload.output_text === 'string') return payload.output_text;\n    return '';\n  }\n\n  const chunks = [];\n\n  for (const item of out) {\n    const content = item?.content;\n    if (Array.isArray(content)) {\n      for (const c of content) {\n        const t = c?.type;\n        // Most common: type: 'output_text' with {text}\n        if ((t === 'output_text' || t === 'text' || t === 'message') && typeof c?.text === 'string') {\n          chunks.push(c.text);\n        }\n        // Some variants may nest {text: {value: ...}}\n        if ((t === 'output_text' || t === 'text') && typeof c?.text === 'object' && typeof c.text.value === 'string') {\n          chunks.push(c.text.value);\n        }\n      }\n    }\n\n    // Fallbacks\n    if (typeof item?.text === 'string') chunks.push(item.text);\n  }\n\n  return chunks.join('\\n').trim();\n}\n\nconst payload = $json;\nconst answer = extractTextFromResponsesApi(payload);\n\nreturn [\n  {\n    ok: true,\n    answer: answer || '(no text found)',\n    raw: payload\n  }\n];"
+      },
+      "id": "ExtractAnswer",
+      "name": "Code (Extract answer)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "responseCode": 200,
+        "responseData": "={{ { ok: $json.ok, answer: $json.answer } }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              }
+            ]
+          }
+        }
+      },
+      "id": "Respond",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook (POST /openai/run)": {
+      "main": [
+        [
+          {
+            "node": "Set Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Input": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request (OpenAI Responses)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request (OpenAI Responses)": {
+      "main": [
+        [
+          {
+            "node": "Code (Extract answer)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code (Extract answer)": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionTimeout": 180,
+    "saveExecutionProgress": true
+  },
+  "meta": {
+    "templateCredsSetup": "Uses OPENAI_API_KEY env var"
+  }
+}
