@@ -24,7 +24,10 @@
       "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio diff --cached)",
       "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio commit -m \"$\\(cat <<'EOF'\nfeat: Express+OpenAIプロキシサーバーとシンプルチャットUIを追加\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio diff .claude/settings.local.json)",
-      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio add api/chat.js && git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio rm -r server/ && git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio commit -m \"$\\(cat <<'EOF'\nrefactor: ExpressサーバーをVercel Serverless Function \\(api/chat.js\\) に移行\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")"
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio add api/chat.js && git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio rm -r server/ && git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio commit -m \"$\\(cat <<'EOF'\nrefactor: ExpressサーバーをVercel Serverless Function \\(api/chat.js\\) に移行\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio diff -- .gitignore api/chat.js package.json vercel.json)",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio log --oneline -3)",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio add .gitignore api/chat.js package.json package-lock.json vercel.json && git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio commit -m \"$\\(cat <<'EOF'\nfeat: Vercelデプロイ設定とAPIエラーハンドリングを追加\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }
