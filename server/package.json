@@ -1,0 +1,13 @@
+{
+  "name": "openai-proxy",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "openai": "^4.0.0"
+  },
+  "scripts": {
+    "dev": "node index.mjs"
+  }
+}
