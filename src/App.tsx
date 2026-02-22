@@ -11,6 +11,11 @@ export default function App() {
       body: JSON.stringify({ message: input }),
     });
 
+    if (!res.ok) {
+      const t = await res.text();
+      throw new Error(`API ${res.status}: ${t}`);
+    }
+
     const data = await res.json();
     setAnswer(data.text);
   };
