@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { profile } from "../data/profile";
 import styles from "./IntroSection.module.css";
 
 export function IntroSection() {
-  const [copyIndex, setCopyIndex] = useState(0);
-  const catchCopy = profile.catchCopies[copyIndex];
 
   return (
     <section className={styles.section}>
@@ -12,7 +9,7 @@ export function IntroSection() {
         <div className={styles.grid}>
           {/* ===== 左カラム（1/3）===== */}
           <div>
-            <h1 className={styles.catch}>{catchCopy}</h1>
+            <h1 className={styles.catch}>{profile.catchCopies[0]}</h1>
             <p className={styles.name}>{profile.name}</p>
             <p className={styles.title}>{profile.title}</p>
 
@@ -42,22 +39,6 @@ export function IntroSection() {
 
             <p className={styles.closing}>{profile.closingLine}</p>
           </div>
-        </div>
-
-        {/* ===== キャッチコピー切替 ===== */}
-        <div className={styles.switcher}>
-          <span className={styles.switcherLabel}>Catch:</span>
-          <select
-            className={styles.switcherSelect}
-            value={copyIndex}
-            onChange={(e) => setCopyIndex(Number(e.target.value))}
-          >
-            {profile.catchCopies.map((c, i) => (
-              <option key={i} value={i}>
-                {c}
-              </option>
-            ))}
-          </select>
         </div>
       </div>
     </section>

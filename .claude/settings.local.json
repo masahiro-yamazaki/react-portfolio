@@ -7,7 +7,18 @@
       "Bash(git rm:*)",
       "Bash(git commit:*)",
       "Bash(npx vite build 2>&1)",
-      "Bash(timeout 8 npx vite --port 5173 2>&1 || true)"
+      "Bash(timeout 8 npx vite --port 5173 2>&1 || true)",
+      "Bash(git push origin main)",
+      "Bash(npx tsc -b --noEmit 2>&1 && npx vite build 2>&1)",
+      "Bash(npm install tailwindcss @tailwindcss/vite 2>&1)",
+      "Bash(npm uninstall tailwindcss @tailwindcss/vite 2>&1)",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio status)",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio diff)",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio log --oneline -5)",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio add src/App.tsx src/App.css src/main.tsx)",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio commit -m \"$\\(cat <<'EOF'\nfeat: 学習ログ入力→n8n Webhook POST の最小フロントを追加\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio push origin main)",
+      "Bash(git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio add .claude/settings.local.json src/components/IntroSection.tsx src/components/IntroSection.module.css && git -C /Users/masahiro.yamazaki/dev-frontend/react-portfolio commit -m \"$\\(cat <<'EOF'\nrefactor: IntroSectionのキャッチ切替UIを削除し固定表示に簡素化\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }
